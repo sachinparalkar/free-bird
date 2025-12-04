@@ -1,37 +1,46 @@
-data1 = [1,2,3,3,4,4,4,5]
-data2 = [3,5,7]
 
-def deleteMatch(data1, data2):
-    data3= []
-
-    dataSet1 = set(data1)
-    dataSet2 = set(data2)
-
-    print(dataSet1)
-    print(dataSet2)
-
-    if(len(dataSet1) <= len(dataSet2)):
-        for i in dataSet1:
-            if i not in dataSet2:
-                data3.append(i)
-            else:
-                dataSet2.remove(i)
-        data3.extend(list(dataSet2))
-               
-    else:
-        for i in dataSet2:
-            if i not in dataSet1:
-                data3.append(i)
-            else:
-                dataSet1.remove(i)
-        data3.extend(list(dataSet1))
-    return data3
-
-print(deleteMatch(data1, data2))
-
+def array_diff(a, b):
+    data = []  
     
+    dataSet1 = set(a)
+    dataSet2 = set(b)
+    
+    set3 = dataSet1.intersection(dataSet2)
+    print(set3)
+    if len(set3) > 0:   
+        for i in set3:
+            if i in a:
+                a.sort()
+                start = a.index(i)
+                end = len(a)
+
+                for j in range(start, end):
+                    if i in a:
+                        a.remove(i)
+
+            if i in b:
+                b.sort()
+                start = b.index(i)
+                end = len(b)
+
+                for j in range(start, end):
+                    if i in b:
+                        b.remove(i)
 
 
-    
-    
-    
+        data = a + b
+    else: 
+        data = a+b
+
+    print(data)    
+    return data
+
+array_diff([1,2,3], [1,2])
+
+def basic_test_cases():
+    array_diff([1,2], [1])
+    array_diff([1,2,2], [1])
+    array_diff([1,2,2], [2])
+    array_diff([1,2,2], [])
+    array_diff([], [1,2])
+    array_diff([1,2,3], [1, 2])
